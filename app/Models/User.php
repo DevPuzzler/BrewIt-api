@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Spatie\Permission\Traits\HasRoles;
@@ -14,6 +15,8 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Model implements JWTSubject, AuthenticatableContract, AuthorizableContract
 {
     use HasFactory, Authenticatable, HasRoles, Authorizable;
+
+    public const TABLE_NAME = 'users';
 
     public const COLUMN_ID = 'id';
     public const COLUMN_NAME = 'name';
@@ -50,5 +53,14 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
     public function getJWTCustomClaims(): array
     {
         return [];
+    }
+
+    public function brewCategories(): HasMany
+    {
+        return $this->hasMany(
+            BrewCategory::class,
+            BrewCategory::COLUMN_USER_ID,
+            User::COLUMN_ID,
+        );
     }
 }

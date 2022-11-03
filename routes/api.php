@@ -1,6 +1,8 @@
 <?php
 
+use App\Enums\UserRolesEnum as UserRoles;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BrewCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group([
-    'prefix' => 'auth',
-], function() {
-
-    Route::controller(AuthController::class)->group( function() {
+Route::controller(AuthController::class)
+    ->prefix('auth')
+    ->group( function() {
         Route::post('login', 'login');
 
         Route::group([
@@ -31,4 +31,12 @@ Route::group([
         });
     });
 
-});
+Route::controller(BrewCategoryController::class)
+    ->prefix('brewcategories')
+    ->middleware([
+        'auth.jwt',
+        sprintf('role:%s', UserRoles::USER->value)
+    ])
+    ->group( function() {
+        Route::post('', 'create');
+    });
