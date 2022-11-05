@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Requests\BrewCategory;
+namespace App\Http\Requests\BrewProductCategory;
 
-use App\Models\BrewCategory;
+use App\Models\BrewProductCategory;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateBrewCategoryRequest extends FormRequest
+class CreateBrewProductCategoryRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            BrewCategory::COLUMN_NAME => [
+            BrewProductCategory::COLUMN_NAME => [
                 'required',
                 'string',
                 'min:2',
             ],
-            BrewCategory::COLUMN_DESCRIPTION => [
+            BrewProductCategory::COLUMN_DESCRIPTION => [
                 'required',
                 'string',
                 'min:2'

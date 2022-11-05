@@ -58,9 +58,27 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
     public function brewCategories(): HasMany
     {
         return $this->hasMany(
-            BrewCategory::class,
-            BrewCategory::COLUMN_USER_ID,
+            BrewProductCategory::class,
+            BrewProductCategory::COLUMN_USER_ID,
             User::COLUMN_ID,
+        );
+    }
+
+    public function brewProductCategories(): HasMany
+    {
+        return $this->hasMany(
+            BrewProductCategory::class,
+            BrewProductCategory::COLUMN_USER_ID,
+            self::COLUMN_ID
+        );
+    }
+
+    public function brewProducts(): HasMany
+    {
+        return $this->hasMany(
+            BrewProduct::class,
+            BrewProduct::COLUMN_USER_ID,
+            self::COLUMN_ID
         );
     }
 }

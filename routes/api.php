@@ -2,7 +2,7 @@
 
 use App\Enums\UserRolesEnum as UserRoles;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BrewCategoryController;
+use App\Http\Controllers\BrewProductCategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +31,7 @@ Route::controller(AuthController::class)
         });
     });
 
-Route::controller(BrewCategoryController::class)
+Route::controller(BrewProductCategoryController::class)
     ->prefix('brewcategories')
     ->middleware([
         'auth.jwt',

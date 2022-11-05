@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Tools\ValueObjects\Queries\BrewCategory;
+namespace App\Tools\ValueObjects\Queries\BrewProductCategory;
 
-use App\Models\BrewCategory;
+use App\Models\BrewProductCategory;
 use Illuminate\Support\Collection;
 
-class UpdateBrewCategoryQuery
+class UpdateBrewProductCategoryQuery
 {
     public function __construct(
         protected readonly int $id,
@@ -31,8 +31,8 @@ class UpdateBrewCategoryQuery
     public function getDataForUpdate(): Collection
     {
         return collect([
-            BrewCategory::COLUMN_NAME => $this->getName(),
-            BrewCategory::COLUMN_DESCRIPTION => $this->getDescription(),
+            BrewProductCategory::COLUMN_NAME => $this->getName(),
+            BrewProductCategory::COLUMN_DESCRIPTION => $this->getDescription(),
         ]);
     }
 }

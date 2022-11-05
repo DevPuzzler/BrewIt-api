@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Tools\ValueObjects\Queries\BrewCategory;
+namespace App\Tools\ValueObjects\Queries\BrewProductCategory;
 
-use App\Models\BrewCategory;
+use App\Models\BrewProductCategory;
 use App\Models\User;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Collection;
 
-class CreateBrewCategoryQuery
+class CreateBrewProductCategoryQuery
 {
     public function __construct(
         protected readonly Authenticatable|User $user,
@@ -33,9 +33,9 @@ class CreateBrewCategoryQuery
     public function getDataForCreate(): Collection
     {
         return collect([
-            BrewCategory::COLUMN_NAME => $this->getName(),
-            BrewCategory::COLUMN_DESCRIPTION => $this->getDescription(),
-            BrewCategory::COLUMN_USER_ID => $this->getUser()->getAttribute(User::COLUMN_ID),
+            BrewProductCategory::COLUMN_NAME => $this->getName(),
+            BrewProductCategory::COLUMN_DESCRIPTION => $this->getDescription(),
+            BrewProductCategory::COLUMN_USER_ID => $this->getUser()->getAttribute(User::COLUMN_ID),
         ]);
     }
 }
