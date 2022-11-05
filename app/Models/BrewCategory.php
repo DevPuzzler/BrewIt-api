@@ -14,6 +14,7 @@ class BrewCategory extends Model
 
     public const TABLE_NAME = 'brew_categories';
 
+    public const COLUMN_ID = 'id';
     public const COLUMN_USER_ID = 'user_id';
     public const COLUMN_NAME = 'name';
     public const COLUMN_DESCRIPTION = 'description';

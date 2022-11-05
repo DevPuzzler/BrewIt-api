@@ -39,4 +39,8 @@ Route::controller(BrewCategoryController::class)
     ])
     ->group( function() {
         Route::post('', 'create');
+        Route::get('', 'getCollectionForUser');
+        Route::patch('/{id}', 'update');
+        Route::get('/{id}', 'getById');
+        Route::delete('/{id}', 'delete');
     });
